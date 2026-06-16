@@ -6,6 +6,7 @@ TechHire ATS is a web-based Applicant Tracking System (ATS) developed using Pyth
 
 ## Features
 
+* Multi-language Interface Support (English, Hindi, Marathi, Urdu, Spanish, Mexican Spanish, and German)
 * Dynamic Job Description Matching
 * Resume Parsing from PDF
 * ATS Score Calculation
