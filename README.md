@@ -15,6 +15,7 @@ TechHire ATS is a web-based Applicant Tracking System (ATS) developed using Pyth
 * Excel Report Download
 * Login & Authentication System
 
+
 ## Tech Stack
 
 * Python
@@ -45,6 +46,9 @@ Smart ATS Recruitment System/
 ├── utils/
 └── ats.db
 ```
+## Project Screenshot
+
+![ATS Dashboard](dashboard.png)
 
 ## Future Enhancements
 
@@ -55,5 +59,6 @@ Smart ATS Recruitment System/
 
 ## Author
 
-**Sohail Ishak Kalut**
-MCA Student | Python Developer
+**Sohail Ishak Kalut**  
+MCA Student | Python Developer  
+GitHub: https://github.com/sohailkalut123-beep
