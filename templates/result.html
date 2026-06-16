@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <h1 id="resultTitle">
+            Candidate Analysis Completed
+        </h1>
+        <p id="resultSubtitle">
+            Uploaded resumes processed successfully.
+        </p>
+        <div class="dashboard-cards">
+            <div class="card">
+                <h2>
+                    {{ total_candidates }}
+                </h2>
+                <p class="card_para" style="color: blue;" id="totalCandidatesText">
+                    Total Candidates
+                </p>
+            </div>
+            <div class="card">
+                <h2 style="color: #22c55e;">
+            {{ shortlisted_count }}
+        </h2>
+        <p class="card_para" style="color: green;" id="shortlistedText">
+            Shortlisted
+        </p>
+    </div>
+    <div class="card">
+        <h2 style="color: #ef4444;">
+            {{ rejected_count }}
+        </h2>
+        <p class="card_para" style="color: red;" id="rejectedText">
+            Rejected
+        </p>
+    </div>
+</div>
+<div class="chart-container">
+    <h3 id="analyticsTitle">
+        ATS Analytics Dashboard
+    </h3>
+    <canvas id="statusChart"></canvas>
+</div>
+<div class="selection_tab">
+    <select id="degreeFilter" class="degreeFilter">
+        <option value="All">
+            ALL Degrees
+        </option>
+        <option value="B.Tech">
+            B.Tech
+        </option>
+        <option value="MCA">
+            MCA
+        </option>
+        <option value="BCA">
+            BCA
+        </option>
+    </select>
+    <select id="statusFilter" class="degreeFilter">
+        <option value="All">
+            All status
+        </option>
+        <option value="Shortlisted">
+            Shortlisted
+        </option>
+        <option value="Rejected">
+            Rejected
+        </option>
+    </select>
+    <a href="/download" style="margin-left: 28px;">
+        <button id="downloadBtn">
+            Download Excel Report 📥
+        </button>
+    </a>
+</div>
+<input
+type="text"
+id="searchInput"
+placeholder="Search Candidate 🔍︎ ...."
+class="degreeFilter">
+<table>
+    <tr style="height: 30px; gap: inherit;">
+        <th>Name</th>
+        <th>Phone</th>
+        <th>E-mail</th>
+        <th>Degree</th>
+        <th>Domain</th>
+        <th>Skills</th>
+        <th>Matched JD Skills</th>
+        <th>ATS Score</th>
+        <th>Status</th>
+    </tr>
+    {% for candidate in candidates %}
+    <tr class="candidate-row">
+        <td>{{candidate.name}}</td>
+        <td>{{candidate.phone}}</td>
+        <td>{{candidate.email}}</td>
+        <td>{{candidate.degree}}</td>
+        <td>{{candidate.domain}}</td>
+        <td>{{candidate.skills}}</td>
+        <td>{{candidate.matched_jd_skills}}</td>
+        <td>{{candidate.score}}%</td>
+        <td class="{{candidate.status}}">{{candidate.status}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div style="text-align: center; margin-top:15px; margin-bottom: 10px;">
+    <a href="/logout">
+        <button
+            id="logoutBtn"
+            style="background-color: transparent; border: 1px solid white;">
+                Logout
+        </button>
+    </a>
+</div>
+</div>
+<script src="{{url_for('static',filename='js/main.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const shortlisted =
+    {{ shortlisted_count}};
+    const rejected =
+    {{ rejected_count}};
+    const ctx =
+    document.getElementById(
+        "statusChart"
+    );
+    new Chart(ctx,{
+        type:"pie",
+        data:{
+            labels:[
+                "Shortlisted",
+                "Rejected"
+            ],
+            datasets:[{
+                data:[
+                    shortlisted,
+                    rejected
+                ],
+                backgroundColor:[
+                    "#22c55e",
+                    "#ef4444"
+                ]
+            }]
+        },
+        options:{
+            plugins:{
+                legend:{
+                    labels:{
+                        color:"#ffffff",
+                        font:{
+                            size:"14",
+                            weight:"bold"
+                        }
+                    }
+                }
+            }
+        }
+    }
+);
+</script>
+<script src="{{ url_for('static', filename='js/translations.js') }}"></script>
+
+<script>
+
+const lang =
+localStorage.getItem("language") || "en";
+
+document.getElementById("resultTitle").innerText =
+translations[lang].resultTitle;
+
+document.getElementById("resultSubtitle").innerText =
+translations[lang].resultSubtitle;
+
+document.getElementById("totalCandidatesText").innerText =
+translations[lang].totalCandidates;
+
+document.getElementById("shortlistedText").innerText =
+translations[lang].shortlisted;
+
+document.getElementById("rejectedText").innerText =
+translations[lang].rejected;
+
+document.getElementById("analyticsTitle").innerText =
+translations[lang].analytics;
+
+document.getElementById("downloadBtn").innerText =
+translations[lang].download;
+
+document.getElementById("searchInput").placeholder =
+translations[lang].search;
+
+document.getElementById("logoutBtn").innerText =
+translations[lang].logout;
+
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Recruiter Login</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',filename='css/login.css')}}">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-card">
+
+            <div class="logo">
+                ATS PRO
+            </div>
+
+            <h1 id="loginTitle">
+                Recruiter Login
+            </h1>
+
+            <p id="welcomeText">
+                Welcome Back Recruiter
+            </p>
+
+            {% if error %}
+            <p class="error" id="errorText">
+                {{ error }}
+            </p>
+            {% endif %}
+
+            <form method="POST">
+
+                <input
+                type="email"
+                id="emailInput"
+                name="email"
+                placeholder="Email"
+                required>
+
+                <input
+                type="password"
+                id="passwordInput"
+                name="password"
+                placeholder="Password"
+                required>
+
+                <div class="remember-box">
+
+                    <input
+                    type="checkbox"
+                    id="remember">
+
+                    <label
+                    for="remember"
+                    id="rememberLabel">
+                        Remember Me
+                    </label>
+
+                </div>
+
+                <button
+                type="submit"
+                id="loginBtn">
+                    Login
+                </button>
+                <div class="reset">
+                    <a href="/forgot-password" id="resetPasswordBtn">
+                        Reset Password
+                    </a>
+                </div>
+                <select
+                id="languageSelect"
+                class="language">
+
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="ur">Urdu</option>
+                    <option value="mr">Marathi</option>
+                    <option value="es">Spanish</option>
+                    <option value="de">German</option>
+                    <option value="la">Latin</option>
+                    <option value="mx">Mexican Spanish</option>
+
+                </select>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/translations.js') }}"></script>
+
+    <script>
+
+    function applyLanguage(lang){
+
+        document.getElementById("loginTitle").innerText =
+            translations[lang].title;
+
+        document.getElementById("welcomeText").innerText =
+            translations[lang].welcome;
+
+        document.getElementById("rememberLabel").innerText =
+            translations[lang].remember;
+
+        document.getElementById("loginBtn").innerText =
+            translations[lang].login;
+
+        document.getElementById("resetPasswordBtn").innerText =
+            translations[lang].resetPassword;
+
+        document.getElementById("emailInput").placeholder =
+            translations[lang].email;
+
+        document.getElementById("passwordInput").placeholder =
+            translations[lang].password;
+
+        const errorText =
+        document.getElementById("errorText");
+
+        if(errorText){
+            errorText.innerText =
+                translations[lang].invalid;
+        }
+
+        localStorage.setItem(
+            "language",
+            lang
+        );
+    }
+
+    document.getElementById("languageSelect")
+    .addEventListener("change", function(){
+
+        applyLanguage(
+            this.value
+        );
+
+    });
+
+    window.onload = function(){
+
+        const savedLang =
+            localStorage.getItem("language") || "en";
+
+        document.getElementById(
+            "languageSelect"
+        ).value = savedLang;
+
+        applyLanguage(
+            savedLang
+        );
+    };
+
+    </script>
+
+</body>
+</html>

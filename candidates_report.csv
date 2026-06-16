@@ -1,0 +1,5 @@
+Name,Phone,Email,Degree,Domain,Skills,ATS Score,Status
+Rahul Sharma,9988776655,rahul.sharma@example.com,mca,,"html,css,javascript,python,java",66.67,Shortlisted
+Sohail Khan,9123456780,sohail.khan@example.com,b.tech,,"python,flask,sql",50.0,Rejected
+Aman Verma,9876543210,aman.verma@example.com,b.tech,,"html,css,javascript,react,java",50.0,Rejected
+Neha Patil,9011223344,neha.patil@example.com,bca,,"python,sql",33.33,Rejected

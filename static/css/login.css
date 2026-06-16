@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Segoe UI,sans-serif;
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+    );
+}
+.login-card{
+    width:420px;
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:
+    0 8px 32px rgba(0,0,0,0.3);
+    text-align: center;
+    color: white;
+}
+.language{
+    width: 25%;
+    height: 42px;
+    margin-top: 15px;
+    padding: 12px ;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 12px;
+    outline: none;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.language:hover{
+    background: rgba(255,255,255,0.15);
+}
+
+.language:focus{
+    border-color: #4f46e5;
+    box-shadow: 0 0 10px rgba(79,70,229,0.4);
+}
+
+.language option{
+    background: #1e293b;
+    color: white;
+}
+.logo{
+    font-size:34px;
+    font-weight:bold;
+    margin-bottom:15px;
+    color:#60a5fa;
+}
+.login-card h1{
+    margin-bottom:10px;
+}
+.login-card p{
+    margin-bottom:25px;
+    opacity:0.8;
+}
+.login-card input[type="email"],
+.login-card input[type="password"]{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+    outline:none;
+}
+.remember-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:15px 0;
+}
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+button:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+}
+.error{
+    color: #ff6b6b;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.reset{
+    margin-top: 16px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.reset a{
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.reset a:hover{
+    color: #93c5fd;
+    text-decoration: underline;
+}

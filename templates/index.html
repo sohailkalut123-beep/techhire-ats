@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI ATS Portal</title>
+    <link rel="stylesheet" href ="{{url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+    <div class="container">
+                <nav>
+                    <h2 class="logo">
+                        TechHire ATS
+                    </h2>
+                </nav>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <label class="jd-label" id="jdLabel">
+                Job Description
+                </label>
+                <textarea
+                name="job_description"
+                id="jobDescription"
+                placeholder="Enter Job Description Here..."></textarea>
+                <h1 id="mainTitle">
+                    Smart ATS Recruitment System
+                </h1>
+                <p id="subTitle">
+                    Dynamic JD based hiring and resume screening platform
+                </p>
+                <div class="Upload-section">
+                    <input type="file" 
+                    id ="resumeUpload"
+                    name="resumes" 
+                    multiple
+                    hidden>
+                    <label
+                        for="resumeUpload"
+                        class="custom-upload"
+                        id="chooseCvBtn">
+                        Choose CVs
+                    </label>
+                    <button
+                        type="submit"
+                        id="analyzeBtn"
+                        class="analyzeBtn">
+                            Analyze Candidates
+                    </button>
+                    <p id="statusMessage"></p>
+            </form>
+    </div>
+        <div id="fileList">  </div>
+    </div>
+    <script src="{{url_for('static',filename='js/main.js')}}"></script>
+
+<script src="{{ url_for('static', filename='js/translations.js') }}"></script>
+
+<script>
+
+const lang =
+localStorage.getItem("language") || "en";
+
+document.getElementById("mainTitle").innerText =
+translations[lang].homeTitle;
+
+document.getElementById("subTitle").innerText =
+translations[lang].homeSubtitle;
+
+document.getElementById("jdLabel").innerText =
+translations[lang].jobDescription;
+
+document.getElementById("jobDescription").placeholder =
+translations[lang].jobPlaceholder;
+
+document.getElementById("chooseCvBtn").innerText =
+translations[lang].chooseCV;
+
+document.getElementById("analyzeBtn").innerText =
+translations[lang].analyze;
+
+</script>
+</body>
+</html>
